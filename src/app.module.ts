@@ -6,6 +6,7 @@ import { UserModule } from './user/user.module';
 import { DatabaseModule } from './database-sql/database-sql.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UsersModule } from './users/users.module';
+import { UploadModule } from './upload-file/upload-file.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { UsersModule } from './users/users.module';
     DatabaseModule,
     MongooseModule.forRoot('mongodb://127.0.0.1:27017/test'),
     UsersModule,
+    UploadModule,
   ],
   controllers: [AppController],
   providers: [AppService],

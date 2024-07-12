@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from '../user/entities/users.entity';
+import { upload } from 'src/upload-file/upload.entity';
 
 @Module({
   imports: [
@@ -11,7 +12,7 @@ import { User } from '../user/entities/users.entity';
       username: 'postgres',
       password: '123456',
       database: 'hotels',
-      entities: [User],
+      entities: [User, upload],
       synchronize: true,
     }),
   ],
