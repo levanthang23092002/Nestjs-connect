@@ -15,6 +15,7 @@ var database_sql_module_1 = require("./database-sql/database-sql.module");
 var mongoose_1 = require("@nestjs/mongoose");
 var users_module_1 = require("./users/users.module");
 var upload_file_module_1 = require("./upload-file/upload-file.module");
+var config_module_1 = require("./config/config.module");
 var AppModule = /** @class */ (function () {
     function AppModule(dataSuorce) {
         this.dataSuorce = dataSuorce;
@@ -27,6 +28,7 @@ var AppModule = /** @class */ (function () {
                 mongoose_1.MongooseModule.forRoot('mongodb://127.0.0.1:27017/test'),
                 users_module_1.UsersModule,
                 upload_file_module_1.UploadModule,
+                config_module_1.ConfigModules,
             ],
             controllers: [app_controller_1.AppController],
             providers: [app_service_1.AppService]
