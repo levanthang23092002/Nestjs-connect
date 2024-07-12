@@ -17,10 +17,10 @@ export class User {
   @Column()
   role: string;
 
-  @Column({ default: true })
+  @Column({ default: 'quảng nam' })
   address: string;
 
-  @Column({ default: true })
+  @Column({ default: 'pass123' })
   password: string;
 
   @Column()

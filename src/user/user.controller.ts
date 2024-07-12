@@ -6,10 +6,12 @@ import {
   Patch,
   Param,
   Delete,
+  UseInterceptors,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { CacheInterceptor } from '@nestjs/cache-manager';
 
 @Controller('user')
 export class UserController {
@@ -27,6 +29,13 @@ export class UserController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
+    return this.userService.findOne(+id);
+  }
+
+  @Get(':id/cache')
+  @UseInterceptors(CacheInterceptor)
+  findOnecache(@Param('id') id: string) {
+    console.log('log run');
     return this.userService.findOne(+id);
   }
 

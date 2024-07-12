@@ -11,6 +11,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 exports.__esModule = true;
 exports.UserController = void 0;
 var common_1 = require("@nestjs/common");
+var cache_manager_1 = require("@nestjs/cache-manager");
 var UserController = /** @class */ (function () {
     function UserController(userService) {
         this.userService = userService;
@@ -22,6 +23,10 @@ var UserController = /** @class */ (function () {
         return this.userService.findAll();
     };
     UserController.prototype.findOne = function (id) {
+        return this.userService.findOne(+id);
+    };
+    UserController.prototype.findOnecache = function (id) {
+        console.log('log run');
         return this.userService.findOne(+id);
     };
     UserController.prototype.update = function (id, updateUserDto) {
@@ -41,6 +46,11 @@ var UserController = /** @class */ (function () {
         common_1.Get(':id'),
         __param(0, common_1.Param('id'))
     ], UserController.prototype, "findOne");
+    __decorate([
+        common_1.Get(':id/cache'),
+        common_1.UseInterceptors(cache_manager_1.CacheInterceptor),
+        __param(0, common_1.Param('id'))
+    ], UserController.prototype, "findOnecache");
     __decorate([
         common_1.Patch(':id'),
         __param(0, common_1.Param('id')), __param(1, common_1.Body())

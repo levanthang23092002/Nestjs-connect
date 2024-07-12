@@ -12,12 +12,18 @@ var user_service_1 = require("./user.service");
 var user_controller_1 = require("./user.controller");
 var typeorm_1 = require("@nestjs/typeorm");
 var users_entity_1 = require("./entities/users.entity");
+var cache_manager_1 = require("@nestjs/cache-manager");
 var UserModule = /** @class */ (function () {
     function UserModule() {
     }
     UserModule = __decorate([
         common_1.Module({
-            imports: [typeorm_1.TypeOrmModule.forFeature([users_entity_1.User])],
+            imports: [
+                typeorm_1.TypeOrmModule.forFeature([users_entity_1.User]),
+                cache_manager_1.CacheModule.register({
+                    ttl: 60
+                }),
+            ],
             controllers: [user_controller_1.UserController],
             providers: [user_service_1.UserService]
         })
